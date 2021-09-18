@@ -1,0 +1,38 @@
+﻿@page
+@model PokemonApp.UI.Pages.ListAllPokemonsModel
+@{
+}
+
+<div class="container">
+    <div class="row">
+        @if (Model.AllPokemons != null && Model.AllPokemons.Any())
+        {
+            @foreach (var pokemon in Model.AllPokemons)
+            {
+        <div class="col-md-4">
+            <h2 style="color:cadetblue">
+                Pokemon: @pokemon.name
+
+            </h2>
+
+            <h3>Weight: @pokemon.weight</h3>
+            <h3>Height : @pokemon.height</h3>
+            <img src="@pokemon.ImageURL" />
+            @if (pokemon.isFavorite == true)
+            {
+                <img src="~/Pokemon images/stars-png-images-star-clipart-images-icons-37.png" height="40" width="40" />
+
+            }
+
+
+            <br />
+        </div>
+            }
+        }
+
+    </div>
+
+
+    <a class="btn btn-dark" asp-page="/Index"> Go back to front page</a>
+
+</div>

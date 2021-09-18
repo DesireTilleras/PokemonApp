@@ -1,0 +1,31 @@
+﻿@page
+@model PokemonApp.UI.Pages.ListFavoritePokemonsModel
+@{
+}
+
+<div class="container">
+    <div class="row">
+        @if (Model.CookiePokemons != null && Model.CookiePokemons.Any())
+        {
+            @foreach (var pokemon in Model.CookiePokemons)
+            {
+        <div class="col-md-4">
+            <h2>Name: @pokemon.name</h2>
+            <h2>Weight: @pokemon.weight</h2>
+            <h2>Height: @pokemon.height</h2>
+            <img src="@pokemon.ImageURL" />
+
+            <form method="post">
+                <input class="btn btn-outline-danger" asp-page-handler="Delete" id="name" type="submit" value="Delete favorite" asp-route-name="@pokemon.name" />
+                <br />
+            </form>
+        </div>
+
+            }
+
+
+        }
+    </div>
+</div>
+
+

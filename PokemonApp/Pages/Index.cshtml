@@ -1,0 +1,53 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<div class="container" style="text-align:center">
+
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-danger" asp-page="/ListFavoritePokemons"> List all favorites</a>
+        </div>
+        <div class="col">
+            <a class="btn btn-dark" asp-page="/ListAllPokemons"> List all pokemons</a>
+        </div>
+    </div>
+    <form method="post">
+        <div class="row pt-5">
+            <div class="col">
+                <select asp-for="@Model.SetName" asp-items="@Model.listOfPokemonNames">
+                    <option value="">Choose Pokemon</option>
+                </select>
+                <input class="btn btn-danger" asp-page-handler="Show" type="submit" value="Show info!" />
+
+                @if (Model.Pokemon != null)
+                {
+                    <h1> @Model.Pokemon.name</h1>
+                    <h2>Height: @Model.Pokemon.height</h2>
+                    <h2>Weight: @Model.Pokemon.weight</h2>
+                    <img src="@Model.Pokemon.ImageURL" />
+
+                    @if (Model.Pokemon.isFavorite == false)
+                    {
+                        <input class="btn btn-outline-success" asp-page-handler="AddToFavorite" asp-route-name="@Model.Pokemon.name" type="submit" value="Add to favorite!" />
+                    }
+                    @if (Model.Pokemon.isFavorite == true)
+                    {
+                        <h2>Added to list of favorites!</h2>
+                    }
+                }
+            </div>
+         </div>
+    </form>
+
+
+</div>
+
+
+
+
+
+
